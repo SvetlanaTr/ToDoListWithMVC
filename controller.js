@@ -1,28 +1,40 @@
-import { View } from './view.js';
-import { Model } from './model.js';
+import { classV } from './view.js';
+import { classM } from './model.js';
 
 class Controller {
-    constructor() {
-        this.loadDOM = null;
-    }
-    initialize() {
+    constructor() { }
 
-        //on page load loadTodo()
-        loadDOM.document.addEventListener('DOMContentLoaded', () => {
-            Model.loadTodo();
-            Model.crossedOut();
+    contentLoader() {
+        //on click button 'add' newElement()
+        classV.addButton.addEventListener('click', classM.checkElement);
+
+        //on click button 'save' saveElement()
+        classV.saveButton.addEventListener('click', classM.saveElement);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            classM.loadTodo();
+            classM.crossedOut();
         });
     }
+
+    crossedOut() {
+        classV.list.addEventListener('click', function (event) {
+            if (event.target.tagName === 'LI') {
+                event.target.classList.toggle('checked');
+            } else if (event.target.tagName === 'SPAN') {
+                let div = event.target.parentNode;
+                div.remove();
+            }
+        }, false);
+    }
+
 }
 
-//on click button 'add' newElement()
-View.addButton.addEventListener('click', Model.checkElement);
 
-//on click button 'save' saveElement()
-View.saveButton.addEventListener('click', Model.saveElement);
-
+const classC = new Controller;
 document.body.onload = () => {
-    Controller.initialize();
+    classC.contentLoader();
+    classC.crossedOut();
 }
 
-export { Controller };
+export { classC };

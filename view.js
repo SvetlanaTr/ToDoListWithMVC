@@ -9,12 +9,11 @@ class View {
         this.span = document.createElement('SPAN');
         this.txt = document.createTextNode('X');
 
-
     }
     displayAddElement() {
         this.li.appendChild(this.text);
-        document.getElementById('list').appendChild(li);
-        document.getElementById('toDoEl').value = '';
+        this.document.getElementById('list').appendChild(li);
+        this.document.getElementById('toDoEl').value = '';
 
         this.span.className = 'close';
         this.span.appendChild(this.txt);
@@ -22,5 +21,5 @@ class View {
 
     }
 }
-
-export { View };
+const classV = new View;
+export { classV };
